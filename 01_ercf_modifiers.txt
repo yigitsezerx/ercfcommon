@@ -1,0 +1,45 @@
+﻿# ERCF MODIFIERS
+
+ercf_restitutor_modifier = {
+	icon = byzantine_eagle_positive
+	stewardship = 2
+	vassal_opinion = 10
+	monthly_lifestyle_xp_gain_mult = 0.2
+	men_at_arms_maintenance = -0.03
+}
+
+ercf_anastelotes_modifier = {
+	icon = byzantine_eagle_positive
+	stewardship = 1
+	martial = 1
+	vassal_opinion = 10
+	monthly_lifestyle_xp_gain_mult = 0.1
+	men_at_arms_maintenance = -0.01
+}
+
+ercf_augustulus_modifier = {
+	icon = byzantine_eagle_positive
+	stewardship = 3
+	learning_per_piety_level = 3
+	monthly_prestige = 0.3
+	monthly_piety = 0.3
+	vassal_opinion = 30
+	holding_build_speed = -0.10
+	holding_build_gold_cost = -0.10
+	monthly_income = 5
+}
+
+# Boost for the Imperial Capitals
+ercf_imperial_capital_boom = {
+    icon = byzantine_eagle_positive
+    development_growth_factor = 0.10   # +10% Growth
+    tax_mult = 0.10                    # +10% Tax
+    county_opinion_add = 10			   # Cause im happy clapalongifyoufeellikearoomwithoutaroofaa
+}
+
+# Boost for the provinces
+ercf_provincial_stimulus = {
+    icon = byzantine_eagle_positive
+    development_growth_factor = 0.10   # +10% Growth
+    holding_build_gold_cost = -0.05  # Cheaper stuff
+}

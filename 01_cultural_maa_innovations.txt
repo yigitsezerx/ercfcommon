@@ -1,0 +1,106 @@
+﻿#ERCF innovations
+@cretans_innovation = "gfx/interface/icons/culture_innovations/cretans.dds"
+
+@tactica_innovation = "gfx/interface/icons/culture_innovations/tactica.dds"
+
+@eparch_innovation = "gfx/interface/icons/culture_innovations/eparch.dds"
+
+@paramerion_innovation = "gfx/interface/icons/culture_innovations/paramerion.dds"
+
+innovation_cretans = {
+	skill = martial
+	group = culture_group_military
+	culture_era = culture_era_early_medieval
+	icon = @cretans_innovation
+
+	potential = {
+		OR = {
+			this = culture:eastern_roman
+			this = culture:western_roman
+		}
+	}
+
+	unlock_maa = cretan_crossbowmen
+
+	flag = global_maa
+}
+
+innovation_tactica = {
+	skill = martial
+	group = culture_group_military
+	culture_era = culture_era_early_medieval
+	icon = @tactica_innovation
+
+	potential = {
+		OR = {
+			this = culture:eastern_roman
+			this = culture:western_roman
+		}
+	}
+
+	character_modifier = {
+		men_at_arms_cap = 1
+	}
+
+	maa_upgrade = {
+		type = heavy_infantry
+		toughness = 5
+	}
+	maa_upgrade = {
+		type = pikemen
+		toughness = 5
+	}	
+
+}
+
+innovation_eparch = {
+	skill = stewardship
+	group = culture_group_civic
+	culture_era = culture_era_early_medieval
+	icon = @eparch_innovation
+
+	potential = {
+		OR = {
+			this = culture:eastern_roman
+			this = culture:western_roman
+		}
+	}
+
+	character_modifier = {
+		domain_tax_mult = 0.05
+		development_growth_factor = 0.1
+	}
+
+}
+
+innovation_paramerion = {
+	skill = learning
+	group = culture_group_military
+	culture_era = culture_era_early_medieval
+	icon = @paramerion_innovation
+
+	potential = {
+		OR = {
+			this = culture:eastern_roman
+			this = culture:western_roman
+			this = culture:greek
+		}
+	}
+
+	character_modifier = {
+		knight_effectiveness_mult = 0.04
+		prowess = 2
+	}
+
+	maa_upgrade = {
+		type = heavy_infantry
+		damage = 5
+		screen = 5
+	}
+	maa_upgrade = {
+		type = heavy_cavalry
+		damage = 5
+		screen = 5
+	}	
+
+}

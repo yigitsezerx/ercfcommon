@@ -1,0 +1,10 @@
+﻿#############################################
+# CHARACTER NICKNAMES
+#############################################
+
+# ER
+nick_soter = { is_prefix = yes }
+
+nick_pater_thraciae = {}
+
+nick_the_pale_death_of_the_saracens = {}

@@ -1,0 +1,788 @@
+﻿# Magistri Militums
+
+mm_per_thracias_court_position = {
+	sort_order = 290
+	max_available_positions = 1
+	minimum_rank = empire # Should only be available for dukes or higher tiers
+	skill = martial
+
+	court_position_asset = {
+		animation = throne_room_two_handed_passive_1
+		background = "gfx/interface/illustrations/event_scenes/courtyard.dds"
+	}
+
+	opinion = {
+		value = 40 # therefore, when his present term as governor of gaul has ended, he is willing to accept command of a single legion province. illyria, by preference. command. of. a. province. so none of you rascals can go dragging him through the courts!
+	}
+
+	# How high the aptitude has to be to reach the 5 different modifier levels
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	# How good is this character in this position? root scope is the holder of the court position
+	aptitude = {
+		value = 25
+		add = court_position_aptitude_boon_voyager_trait
+		add = {
+			value = martial
+			multiply = 2.5
+			max = 50
+			desc = court_position_skill_martial
+		}
+		add = {
+			value = prowess
+			multiply = 2
+			max = 50
+			desc = court_position_skill_prowess
+		}
+		if = {
+			limit = {
+				has_trait = calm
+			}
+			add = {
+				value = 15
+				desc = court_position_calm_trait
+			}
+		}
+		if = {
+			limit = { has_trait = overseer }
+			add = {
+				value = 15
+				desc = court_position_overseer_trait
+			}
+		}
+		if = {
+			limit = { has_trait = gallant }
+			add = {
+				value = 15
+				desc = court_position_gallant_trait
+			}
+		}
+		# Estate - Owner bonus from stables
+		if = {
+			limit = {
+				liege ?= {
+					domicile ?= { has_domicile_parameter = estate_increase_mm_per_thracias_aptitude }
+				}
+			}
+			add = {
+				value = estate_increase_mm_per_thracias_aptitude_value
+				desc = estate_increase_mm_per_thracias_aptitude_desc
+			}
+		}
+		add = court_position_aptitude_traveling_friends_value
+		add = court_position_aptitude_eunuch_tradition_value
+		add = court_position_aptitude_family_business_value
+		add = court_position_aptitude_high_penalty_value
+		# Bonus from court.8311
+		if = {
+			limit = { var:bonus_aptitude_role ?= flag:mm_per_thracias }
+			add = {
+				value = cp_bonus_aptitude_value
+				desc = cp_bonus_aptitude
+			}
+		}
+		# Seneschal
+		if = {
+			limit = {
+				liege.court_position:seneschal_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:seneschal_court_position.seneschal_improve_court_value
+				desc = seneschal_improve_court_aptitude_desc
+			}
+		}
+		# Yeke Jarquchi
+		if = {
+			limit = {
+				liege.court_position:yeke_jarquchi_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
+				desc = yeke_jarquchi_improve_court_aptitude_desc
+			}
+		}
+	}
+
+	is_shown = {
+		is_landed_or_landless_administrative = yes
+		NOT = { government_has_flag = government_is_nomadic }
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
+	}
+
+	# Is this an available position for this court? (root is court owner)
+	valid_position = {
+		is_landed_or_landless_administrative = yes
+		OR = {
+			culture = { has_cultural_pillar = language_latin }
+			Culture = { has_cultural_tradition = tradition_bucellarii_guard }
+		}
+		AND = {
+			completely_controls = title:d_thrace
+			completely_controls = title:d_strymon
+			completely_controls = title:d_philippopolis
+		}
+	}
+
+	is_shown_character = {
+		scope:employee = {
+			is_imprisoned = no
+		}
+	}
+
+	valid_character = {
+		scope:employee = {
+			mm_per_thracias_validity_trigger = { EMPLOYER = scope:liege }
+		}
+	}
+
+	revoke_cost = { # root is the liege, no other scopes are passed here!
+		prestige =  {
+			value = major_court_position_prestige_revoke_cost
+			# Set to 0 via obligation hook
+			if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = mm_per_thracias
+						LIEGE = root
+					}
+				}
+				multiply = 0
+			}
+			# Avoid AI prestige issues
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					government_has_flag = government_is_landless_adventurer
+				}
+				value = minor_court_position_prestige_revoke_cost
+			}
+		}
+	}
+
+	salary = {
+		round = no
+		gold = {
+			value = minor_court_position_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = mm_per_thracias } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved with obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = mm_per_thracias
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = mm_per_thracias }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = mm_per_thracias }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			if = {
+				limit = {
+					scope:liege = {
+						employs_court_position = mm_per_thracias_court_position
+						any_court_position_holder = {
+					        type = mm_per_thracias_court_position
+					        has_character_flag = free_mm_per_thracias
+						}
+					}
+				}
+				multiply = {
+					value = 0
+					desc = free_court_position
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = tiny_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = mm_per_thracias } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = mm_per_thracias
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = mm_per_thracias }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = mm_per_thracias }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+
+	# These modifiers are employed based on what level the aptitude reaches (levels are defined as breakpoints)
+	scaling_employer_modifiers = {
+		terrible = {
+			knight_effectiveness_mult = 0.01
+			maa_damage_mult = 0.01
+		}
+		poor = {
+			knight_effectiveness_mult = 0.02
+			maa_damage_mult = 0.02
+			movement_speed = 0.1
+		}
+		average = {
+			knight_effectiveness_mult = 0.03
+			maa_damage_mult = 0.03
+			movement_speed = 0.15
+		}
+		good = {
+			knight_effectiveness_mult = 0.04
+			maa_damage_mult = 0.04
+			movement_speed = 0.2
+		}
+		excellent = {
+			knight_effectiveness_mult = 0.05
+			maa_damage_mult = 0.05
+			movement_speed = 0.25
+		}
+	}
+
+	modifier = {
+		monthly_martial_lifestyle_xp_gain_mult = 0.15
+		knight_effectiveness_mult = 0.15
+	}
+
+	on_court_position_received = {
+		mm_per_thracias_title_accepted_effect = yes
+	}
+	on_court_position_revoked = {
+		mm_per_thracias_title_revoked_effect = yes
+	}
+	on_court_position_invalidated = {
+		mm_per_thracias_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = {
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = mm_per_thracias_court_position
+		}
+	}
+
+	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
+	candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		if = {
+			limit = {
+				scope:liege = {
+					ai_has_warlike_personality = yes
+				}
+			}
+			add = 200
+		}
+		if = { # To stop petitioned positions immediately being fired by the AI
+			limit = {
+				court_position_petition_ai_weight_trigger = { ROLE = mm_per_thracias }
+			}
+			add = 1000
+		}
+		add = court_position_debt_considerations_value
+	}
+}
+
+magister_orientem_court_position = {
+	sort_order = 290
+	max_available_positions = 1
+	minimum_rank = empire # Should only be available for dukes or higher tiers
+	skill = martial
+
+	court_position_asset = {
+		animation = throne_room_two_handed_passive_1
+		background = "gfx/interface/illustrations/event_scenes/courtyard.dds"
+	}
+
+	opinion = {
+		value = 40 # therefore, when his present term as governor of gaul has ended, he is willing to accept command of a single legion province. illyria, by preference. command. of. a. province. so none of you rascals can go dragging him through the courts!
+	}
+
+	# How high the aptitude has to be to reach the 5 different modifier levels
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	# How good is this character in this position? root scope is the holder of the court position
+	aptitude = {
+		value = 25
+		add = court_position_aptitude_boon_voyager_trait
+		add = {
+			value = martial
+			multiply = 2.5
+			max = 50
+			desc = court_position_skill_martial
+		}
+		add = {
+			value = prowess
+			multiply = 2
+			max = 50
+			desc = court_position_skill_prowess
+		}
+		if = {
+			limit = {
+				has_trait = calm
+			}
+			add = {
+				value = 15
+				desc = court_position_calm_trait
+			}
+		}
+		if = {
+			limit = { has_trait = overseer }
+			add = {
+				value = 15
+				desc = court_position_overseer_trait
+			}
+		}
+		if = {
+			limit = { has_trait = gallant }
+			add = {
+				value = 15
+				desc = court_position_gallant_trait
+			}
+		}
+		# Estate - Owner bonus from stables
+		if = {
+			limit = {
+				liege ?= {
+					domicile ?= { has_domicile_parameter = estate_increase_magister_orientem_aptitude }
+				}
+			}
+			add = {
+				value = estate_increase_magister_orientem_aptitude_value
+				desc = estate_increase_magister_orientem_aptitude_desc
+			}
+		}
+		add = court_position_aptitude_traveling_friends_value
+		add = court_position_aptitude_eunuch_tradition_value
+		add = court_position_aptitude_family_business_value
+		add = court_position_aptitude_high_penalty_value
+		# Bonus from court.8311
+		if = {
+			limit = { var:bonus_aptitude_role ?= flag:magister_orientem }
+			add = {
+				value = cp_bonus_aptitude_value
+				desc = cp_bonus_aptitude
+			}
+		}
+		# Seneschal
+		if = {
+			limit = {
+				liege.court_position:seneschal_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:seneschal_court_position.seneschal_improve_court_value
+				desc = seneschal_improve_court_aptitude_desc
+			}
+		}
+		# Yeke Jarquchi
+		if = {
+			limit = {
+				liege.court_position:yeke_jarquchi_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
+				desc = yeke_jarquchi_improve_court_aptitude_desc
+			}
+		}
+	}
+
+	is_shown = {
+		is_landed_or_landless_administrative = yes
+		NOT = { government_has_flag = government_is_nomadic }
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
+	}
+
+	# Is this an available position for this court? (root is court owner)
+	valid_position = {
+		is_landed_or_landless_administrative = yes
+		OR = {
+			culture = { has_cultural_pillar = language_latin }
+			Culture = { has_cultural_tradition = tradition_bucellarii_guard }
+		}
+		AND = {
+			completely_controls = title:k_syria
+			completely_controls = title:d_anatolia
+		}
+	}
+
+	is_shown_character = {
+		scope:employee = {
+			is_imprisoned = no
+		}
+	}
+
+	valid_character = {
+		scope:employee = {
+			magister_orientem_validity_trigger = { EMPLOYER = scope:liege }
+		}
+	}
+
+	revoke_cost = { # root is the liege, no other scopes are passed here!
+		prestige =  {
+			value = major_court_position_prestige_revoke_cost
+			# Set to 0 via obligation hook
+			if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = magister_orientem
+						LIEGE = root
+					}
+				}
+				multiply = 0
+			}
+			# Avoid AI prestige issues
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					government_has_flag = government_is_landless_adventurer
+				}
+				value = minor_court_position_prestige_revoke_cost
+			}
+		}
+	}
+
+	salary = {
+		round = no
+		gold = {
+			value = minor_court_position_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = magister_orientem } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved with obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = magister_orientem
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = magister_orientem }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = magister_orientem }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			if = {
+				limit = {
+					scope:liege = {
+						employs_court_position = magister_orientem_court_position
+						any_court_position_holder = {
+					        type = magister_orientem_court_position
+					        has_character_flag = free_magister_orientem
+						}
+					}
+				}
+				multiply = {
+					value = 0
+					desc = free_court_position
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = tiny_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = magister_orientem } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = magister_orientem
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = magister_orientem }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = magister_orientem }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+
+	# These modifiers are employed based on what level the aptitude reaches (levels are defined as breakpoints)
+	scaling_employer_modifiers = {
+		terrible = {
+			knight_effectiveness_mult = 0.01
+			maa_damage_mult = 0.01
+		}
+		poor = {
+			knight_effectiveness_mult = 0.02
+			maa_damage_mult = 0.02
+			movement_speed = 0.1
+		}
+		average = {
+			knight_effectiveness_mult = 0.03
+			maa_damage_mult = 0.03
+			movement_speed = 0.15
+		}
+		good = {
+			knight_effectiveness_mult = 0.04
+			maa_damage_mult = 0.04
+			movement_speed = 0.2
+		}
+		excellent = {
+			knight_effectiveness_mult = 0.05
+			maa_damage_mult = 0.05
+			movement_speed = 0.25
+		}
+	}
+
+	modifier = {
+		monthly_martial_lifestyle_xp_gain_mult = 0.15
+		knight_effectiveness_mult = 0.15
+	}
+
+	on_court_position_received = {
+		magister_orientem_title_accepted_effect = yes
+	}
+	on_court_position_revoked = {
+		magister_orientem_title_revoked_effect = yes
+	}
+	on_court_position_invalidated = {
+		magister_orientem_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = {
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = magister_orientem_court_position
+		}
+	}
+
+	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
+	candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		if = {
+			limit = {
+				scope:liege = {
+					ai_has_warlike_personality = yes
+				}
+			}
+			add = 200
+		}
+		if = { # To stop petitioned positions immediately being fired by the AI
+			limit = {
+				court_position_petition_ai_weight_trigger = { ROLE = magister_orientem }
+			}
+			add = 1000
+		}
+		add = court_position_debt_considerations_value
+	}
+}

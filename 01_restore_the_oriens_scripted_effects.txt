@@ -1,0 +1,36 @@
+﻿#restore the oriens mf
+restore_the_oriens_decision_effect = {
+	save_scope_as = root_scope
+	give_nickname = nick_soter
+	change_influence = {
+		value = massive_influence_gain
+		multiply = 5
+	}
+	add_legitimacy = {
+		value = massive_legitimacy_gain
+		multiply = 2
+	}
+	dynasty ?= {
+		add_dynasty_prestige = 1000
+	}
+	if = {
+		limit = {
+			culture = { has_cultural_parameter = holds_triumphs }
+		}
+		custom_tooltip = {
+			text = free_triumph_tooltip
+			add_character_flag = free_triumph_flag
+		}
+	}
+	gain_legitimizing_legend_seed_tooltip_effect = yes
+	hidden_effect = { legend_seed_great_deed_dynasty_effect = yes }
+	every_vassal = {
+		custom = custom.every_admin_vassal
+		limit = { government_allows = administrative }
+		add_opinion = {
+			target = scope:root_scope
+			modifier = admiration_opinion
+			opinion = 10
+		}
+	}
+}

@@ -1,0 +1,87 @@
+﻿# ERCF on_actions, if append works, shouldn't break any vanilla on_actions.
+
+on_title_gain = {
+	on_actions = {
+		ercf_on_title_gain
+	}
+}
+
+on_title_lost = {
+	on_actions = {
+		ercf_on_title_lost
+	}
+}
+
+ercf_on_title_gain = {
+	effect = {
+		# Flavian trait check.
+		if = {
+			limit = {
+				OR = {
+					scope:title = title:h_roman_empire
+					scope:title = title:h_eastern_roman_empire
+					scope:title = title:e_byzantium
+				}
+				NOT = { has_trait = flavius_ercf }
+
+				# Check if Theodosian borders are restored.
+				is_target_in_global_variable_list = {
+					name = unavailable_unique_decisions
+					target = flag:retake_eastern_provinces_decision
+				}
+			}
+			trigger_event = ercf_flavian.0001
+		}
+
+		# Autocrator trait & xp checks.
+		if = {
+			limit = {
+				OR = {
+					scope:title = title:e_byzantium
+					scope:title = title:h_roman_empire
+					scope:title = title:h_eastern_roman_empire 
+				}
+				NOT = {
+					has_trait = autocrator_ercf
+				}
+			}
+			trigger_event = autocrator.8011
+			# Give some xp right away.
+			add_trait_xp = {
+				trait = autocrator_ercf
+				value = 10
+			}
+		}
+	}
+}
+
+ercf_on_title_lost = {
+	# Events here
+	events = {
+		autocrator.8022 # Check if current Emperor has trait
+		# ercf_flavian.0002 # Check if ex-flavian lost trait, doesnt work right now.
+	}	
+
+	effect = {
+		# Revoking titles logic
+		if = {
+			limit = {
+				exists = scope:new_holder
+				scope:new_holder = {
+					has_trait = autocrator_ercf
+					NOT = { has_character_flag = ercf_autocrator_revoked_title_xp_cooldown }
+				}
+			}
+			scope:new_holder = {
+				add_trait_xp = {
+					trait = autocrator_ercf
+					value = 2
+				}
+				add_character_flag = {
+					flag = ercf_autocrator_revoked_title_xp_cooldown
+					days = 120
+				}
+			}
+		}		
+	}
+}

@@ -1,0 +1,42 @@
+﻿add_flavius_ercf_effect = {
+	add_trait = flavius_ercf
+	if = {
+		limit = {
+			exists = dynasty
+		}
+		custom_tooltip = descendants_gain_flavius_ercf
+		hidden_effect = {
+			dynasty = {
+				every_dynasty_member = {
+					custom = custom
+					limit = {
+						any_ancestor = {
+							this = $CHARACTER$
+						}
+					}
+					add_trait = flavius_ercf
+				}
+			}
+		}
+	}
+	every_child = {
+		limit = {
+			OR = {
+				has_trait = bastard
+				has_trait = legitimized_bastard
+			}
+			NOT = {
+				has_trait = flavius_ercf
+			}
+		}
+		add_trait = flavius_ercf
+		if = {
+			limit = {
+				is_male = yes
+			}
+			every_child = {
+				add_trait = flavius_ercf
+			}
+		}
+	}
+}

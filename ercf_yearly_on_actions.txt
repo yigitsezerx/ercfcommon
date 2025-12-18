@@ -1,0 +1,118 @@
+﻿# =========================================================
+# ERCF YEARLY ON_ACTIONS
+# =========================================================
+
+yearly_playable_pulse = {
+    on_actions = {
+        ercf_yearly_autocrator_pulse
+    }
+
+    # Integration Events
+    events = {
+        ercf_roman_hegemony_integrations.0001
+        ercf_roman_hegemony_integrations.0002
+        ercf_roman_hegemony_integrations.0003
+        ercf_ravenna.1001
+    }
+}
+
+three_year_playable_pulse = {
+    # Events merge safely, so we can list them directly here
+    events = {
+        # Western Roman Empire
+        ercf_roman_hegemony_integrations.1001 # Francians adopt Western Roman customs
+        ercf_roman_hegemony_integrations.1002 # Hispanians adopt Western Roman customs
+        ercf_roman_hegemony_integrations.1003 # Roman Renaissance in Italy.
+		ercf_roman_hegemony_integrations.1004 # Illyrians adopt the Western Roman customs.
+		ercf_roman_hegemony_integrations.1005 # Africans adopt the Western Roman customs.
+
+        # Eastern Roman Empire
+        ercf_roman_hegemony_integrations.3000 # Haemus populace adopts Eastern Roman customs.
+        ercf_roman_hegemony_integrations.3002 # Anatolian populace adopts Eastern Roman customs.
+        ercf_roman_hegemony_integrations.4002 # Local populace of the Oriens adopt Eastern Roman customs.
+    }
+}
+
+five_year_playable_pulse = {
+    on_actions = {
+        ercf_five_year_roman_development_pulse
+    }
+}
+
+quarterly_playable_pulse = {
+    events = {
+        # autocrator.8011 # remvoed to save performance.
+        # autocrator.8022 # removed to save performance.
+    }
+}
+
+# =========================================================
+# ERCF Pulses
+# =========================================================
+
+ercf_yearly_autocrator_pulse = {
+    effect = {
+        # AUTOCRATOR YEARLY XP GAIN
+        if = {
+            limit = {
+                has_trait = autocrator_ercf
+            }
+            add_trait_xp = {
+                trait = autocrator_ercf
+                value = 1
+            }
+        }
+        # BONUS GAIN FOR EXPERIENCED AUTOCRATS
+        # Corrected syntax: using has_trait_xp
+        if = {
+            limit = {
+                has_trait = autocrator_ercf
+                has_trait_xp = {
+                    trait = autocrator_ercf
+                    value >= 50
+                }
+            }
+            add_trait_xp = {
+                trait = autocrator_ercf
+                value = 2
+            }
+        }
+        # XP LOSS FOR LOW DREAD
+        if = {
+            limit = {
+                has_trait = autocrator_ercf
+                dread <= 25
+            }
+            add_trait_xp = {
+                trait = autocrator_ercf
+                value = -1
+            }
+        }
+    }
+}
+
+ercf_five_year_roman_development_pulse = {
+    effect = {
+        # ROMAN ENGINUITY EVENT
+        if = {
+            limit = {
+               # FIRST, CHECK IF VALID
+               OR = {
+                    has_title = title:e_byzantium
+                    has_title = title:h_roman_empire
+                    has_title = title:h_eastern_roman_empire
+                    has_title = title:e_italy
+               }
+               is_target_in_global_variable_list = {
+                name = unavailable_unique_decisions
+                target = flag:flag_delegated_wre
+               }               
+            }
+            # THEN, ALEA IACTA EST
+            random = {
+                chance = 30 # 30% Chance to fire
+                trigger_event = ercf_roman_development_events.9001
+            }
+        }
+    }
+}

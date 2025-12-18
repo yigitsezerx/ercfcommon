@@ -1,0 +1,107 @@
+﻿reform_the_anatolian_themes_decision = {
+	title = reform_the_anatolian_themes.t
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_anatolian_themes.dds"
+	}
+	desc = reform_the_anatolian_themes.desc
+	decision_group_type = roman
+
+	selection_tooltip = reform_the_anatolian_themes.tip
+	sort_order = 50
+
+	is_shown = {
+		# DLC check
+		has_ep3_dlc_trigger = yes
+		# Standard checks
+		is_playable_character = yes
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_anatolian_themes_reformed
+			}
+		}
+
+		OR = {
+			completely_controls = title:k_anatolia
+			completely_controls = title:k_pontus
+			AND = {
+				completely_controls = title:d_mesopotamia
+				completely_controls = title:d_cyprus
+			}
+		}
+	}
+
+	is_valid = {
+		completely_controls = title:k_anatolia
+		completely_controls = title:k_pontus
+		completely_controls = title:d_mesopotamia
+		completely_controls = title:d_cyprus
+	}
+	
+	is_valid_showing_failures_only = {
+		is_landed = yes
+	}
+
+	effect = {
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:flag_anatolian_themes_reformed
+		}
+
+		dynasty = { add_dynasty_prestige = 1000 }
+
+		change_influence = {
+		value = massive_influence_gain
+		multiply = 5
+		}
+
+		every_vassal = {
+		custom = custom.every_admin_vassal
+		limit = { government_allows = administrative }
+		add_opinion = {
+			target = scope:root_scope
+			modifier = admiration_opinion
+			opinion = 20
+		}
+		}	
+
+		custom_tooltip = reform_the_anatolian_themes_decision.a
+
+		hidden_effect = {
+			trigger_event = ercf_anatolia.1000
+		}
+	}
+
+	cost = {
+		gold = {
+			value = major_gold_value
+			multiply = 1.5
+			round = yes
+		}
+		prestige = {
+			value = major_prestige_gain
+			multiply = 2
+			round = yes
+		}
+	}
+
+	ai_check_interval = 1000
+
+	ai_potential = {
+		is_ruler = yes
+		short_term_gold >= {
+			value = major_gold_value
+			multiply = 1.5
+			round = yes
+		}
+		prestige >= {
+			value = major_prestige_gain
+			multiply = 3
+			round = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

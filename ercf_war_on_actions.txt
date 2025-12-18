@@ -1,0 +1,53 @@
+﻿# =========================================================
+# ERCF WAR ON_ACTIONS
+# =========================================================
+
+on_war_won_attacker = {
+    on_actions = {
+        ercf_war_won_attacker_pulse
+    }
+}
+
+on_war_won_defender = {
+    on_actions = {
+        ercf_war_won_defender_pulse
+    }
+}
+
+# =========================================================
+# ERCF Pulses
+# =========================================================
+
+ercf_war_won_attacker_pulse = {
+    effect = {
+        # Autocrator gains XP for winning an offensive war
+        if = {
+            limit = {
+                scope:attacker = { has_trait = autocrator_ercf }
+            }
+            scope:attacker = {
+                add_trait_xp = {
+                    trait = autocrator_ercf
+                    value = 3
+                }
+            }
+        }
+    }
+}
+
+ercf_war_won_defender_pulse = {
+    effect = {
+        # Autocrator gains MORE XP for successfully defending
+        if = {
+            limit = {
+                scope:defender = { has_trait = autocrator_ercf }
+            }
+            scope:defender = {
+                add_trait_xp = {
+                    trait = autocrator_ercf
+                    value = 5
+                }
+            }
+        }
+    }
+}

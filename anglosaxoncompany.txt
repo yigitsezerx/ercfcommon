@@ -1,0 +1,57 @@
+﻿anglo_saxon_company_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/ep3_decision_varangian_guard.dds"
+	}
+
+	decision_group_type = roman
+	sort_order = 50
+	title = anglo_saxon_company_decision_title
+	desc = anglo_saxon_company_decision_desc
+	selection_tooltip = anglo_saxon_company_decision_tooltip
+	confirm_text = anglo_saxon_company_decision_confirm
+
+	is_shown = {
+		ai = no
+		is_ai = no
+		NOT = {
+			has_character_flag = hired_anglo_saxon_company
+		}
+		OR = {
+			has_title = title:e_byzantium
+			has_title = title:h_roman_empire
+		}
+	}
+	
+	cost = {
+		gold = 1000
+	}
+
+	effect = {
+		if = {
+			limit = {
+				culture = eastern_roman
+				has_title = title:e_byzantium
+			}
+		}
+
+			add_character_flag = {
+				flag = hired_anglo_saxon_company
+			}
+			spawn_army = {
+				levies = 1200
+				men_at_arms = {
+					type = huscarl
+					stacks = 8
+				}
+				men_at_arms = {
+					type = bowmen
+					stacks = 4
+				}
+				location = root.capital_province
+				inheritable = no
+				name = anglo_saxon_company
+			}		
+	}
+
+	ai_will_do = 0
+}

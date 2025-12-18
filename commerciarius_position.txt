@@ -1,0 +1,353 @@
+﻿# Commerciarius, (The official charged with the Commercium, or trade duties)
+
+commerciarius_court_position = {
+	sort_order = 280
+	max_available_positions = 1
+	minimum_rank = empire
+	skill = intrigue
+
+	court_position_asset = {
+		animation = throne_room_writer
+		background = "gfx/interface/illustrations/event_scenes/ep3_medi_estate.dds"
+	}
+
+	opinion = {
+		value = 20 #it is considered an honour to receive this position
+	}
+
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	aptitude = {
+		value = 10
+		# Skills
+		add = {
+			value = stewardship
+			multiply = 1.75
+			max = 50
+			desc = court_position_skill_stewardship
+		}
+		add = {
+			value = learning
+			multiply = 1.25
+			max = 50
+			desc = court_position_skill_learning
+		}
+		add = {
+			value = diplomacy
+			multiply = 1.25
+			max = 50
+			desc = court_position_skill_diplomacy
+		}
+		if = {
+			limit = {
+				has_trait = administrator
+			}
+			add = {
+				value = 20
+				desc = court_position_administrator_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = architect
+			}
+			add = {
+				value = 20
+				desc = court_position_architect_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = scholar
+			}
+			add = {
+				value = 20
+				desc = court_position_scholar_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = diplomat
+			}
+			add = {
+				value = 20
+				desc = court_position_diplomat_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = intellect_good_3
+			}
+			add = {
+				value = 40
+				desc = court_position_intellect_good_3_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = intellect_good_2
+			}
+			add = {
+				value = 20
+				desc = court_position_intellect_good_2_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = intellect_good_1
+			}
+			add = {
+				value = 10
+				desc = court_position_intellect_good_1_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = shrewd
+			}
+			add = {
+				value = 10
+				desc = court_position_shrewd_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = greedy
+			}
+			add = {
+				value = 10
+				desc = court_position_greedy_trait
+			}
+		}		
+		else_if = {
+			limit = {
+				has_trait = diligent
+			}
+			add = {
+				value = 10
+				desc = court_position_diligent_trait
+			}
+		}		
+		if = {
+			limit = {
+				has_trait = infirm
+			}
+			add = {
+				value = -50
+				desc = court_position_infirm_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = drunkard
+			}
+			add = {
+				value = -25
+				desc = court_position_drunkard_trait
+			}
+		}
+		if = {
+			limit = {
+				has_trait = blind
+			}
+			add = {
+				value = -25
+				desc = court_position_blind_trait
+			}
+		}
+	}
+
+	# Is this an available position for this court? (root is court owner)
+	is_shown = {
+		government_has_flag = government_is_administrative
+		is_independent_ruler = yes
+	}
+
+	is_shown_character = {
+		scope:employee = {
+			is_imprisoned = no
+		}
+	}
+
+	valid_position = {
+		AND = {
+	    culture = { has_cultural_pillar = heritage_byzantine }			
+		}
+	}
+
+	valid_character = {
+		scope:employee = {
+			base_court_position_validity_trigger = { EMPLOYER = $EMPLOYER$ }
+			NOT = { has_court_position = master_of_horse_court_position } # jack of all trades, but master of none :)
+		}
+	}
+
+	revoke_cost = {
+		prestige = {
+			value = major_court_position_prestige_revoke_cost
+			# Set to 0 via obligation hook
+			if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = eparch
+						LIEGE = scope:liege
+					}
+				}
+				multiply = 0
+			}
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+		}
+		influence = {
+			value = major_influence_value
+			if = {
+				limit = {
+					exists = this
+					is_ai = yes
+				}
+				multiply = 0
+			}
+		}
+	}
+
+	salary = {
+		round = no
+		gold = {
+			value = major_court_position_salary # Update X_salary_tooltip if script_value is changed
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = curopalates } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved with obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = curopalates
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = curopalates }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = curopalates }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+	    terrible = {
+			monthly_influence_mult = 0.05
+			legitimacy_loss_mult = 0.02
+			vassal_opinion = -15
+			popular_opinion = -10
+			monthly_income = 5
+		}
+		poor = {
+			monthly_influence_mult = 0.1
+			legitimacy_loss_mult = 0.05
+			vassal_opinion = -10
+			popular_opinion = -10
+			monthly_income = 5
+		}
+		average = {
+			monthly_influence_mult = 0.15
+			legitimacy_loss_mult = 0.08
+			vassal_opinion = -10
+			popular_opinion = -5
+			monthly_income = 10
+		}
+		good = {
+			monthly_influence_mult = 0.2
+			legitimacy_loss_mult = 0.10
+			vassal_opinion = -10
+			popular_opinion = -5
+			monthly_income = 15
+		}
+		excellent = {
+			monthly_influence_mult = 0.25
+			legitimacy_loss_mult = 0.10
+			vassal_opinion = -5
+			monthly_income = 20
+		}
+	}
+
+	# Employee bonuses
+	modifier = {
+		monthly_intrigue_lifestyle_xp_gain_mult = 0.1
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.1
+		monthly_influence_mult = 0.40
+	}
+
+	# Effects on received/revoked/invalidated
+	on_court_position_received = {
+		basic_gained_court_position_effect = yes
+	}
+	on_court_position_revoked = {
+		basic_revoked_court_position_effect = yes
+	}
+	on_court_position_invalidated = {
+		basic_invalidated_court_position_effect = yes
+	}
+
+	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
+	candidate_score = {
+		value = 150
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		add = court_position_debt_considerations_value
+		
+		scope:liege = {
+			# More likely if you have a lot of gold and can afford it
+			if = {
+				limit = {
+					monthly_character_income > monthly_character_expenses_plus_fourty_percent
+				}
+				add = 50
+			}
+		}
+	}
+}

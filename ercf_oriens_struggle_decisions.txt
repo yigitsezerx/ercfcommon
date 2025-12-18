@@ -1,0 +1,80 @@
+﻿###################################
+# Roman Resurgence Ending
+###################################
+
+### Struggle Oriens Ending Roman Resurgence Decision ###
+struggle_ercf_oriens_ending_roman_resurgence_decision = {
+	decision_group_type = major
+	title = struggle_ercf_oriens_ending_roman_resurgence
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/ercf_oriens_struggle_triumph_in_jerusalem.dds"
+	}
+	extra_picture = "gfx/interface/illustrations/struggle_decision_buttons/struggle_ercf_oriens_ending_roman_resurgence.dds"
+	desc = struggle_ercf_oriens_ending_roman_resurgence_decision_desc
+	selection_tooltip = struggle_ercf_oriens_ending_roman_resurgence_tooltip
+	confirm_click_sound = "event:/DLC/FP2/SFX/UI/fp2_struggle_ending_decision_confirm"
+	is_invisible = yes
+	sort_order = 80
+
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		# Independent
+		top_liege = this
+	}
+
+	is_valid = { # We can skip some of the more elementary checks due to this being struggle-only
+		# Involved
+		custom_tooltip = {
+			text = struggle_ending_decision_correct_involvement_tt
+			any_character_struggle = {
+				involvement = involved
+				is_struggle_type = ercf_oriens_struggle
+			}
+		}
+		# Roman
+		custom_tooltip = {
+			text = struggle_ercf_oriens_ending_roman_resurgence_decision_heritage_tt
+			culture = { has_cultural_pillar = heritage_byzantine }
+		}
+		# ROMAN EMPEROR?
+		# Famed
+		prestige_level >= very_high_prestige_level
+		# Control enough of ERE
+		custom_tooltip = {
+			text = struggle_ercf_oriens_ending_roman_resurgence_decision_region_control_tt
+			any_county_in_region = {
+				region = custom_ercf_struggle_region
+				percent >= fp3_persia_owned_for_rekindle_persia_decimal_value
+				holder.top_liege = root
+			}
+		}
+	}
+
+	effect = {
+		if = {
+			limit = { has_dlc_feature = legends }
+			legend_seed_struggle_ending_effect = {
+				ENDER = root
+				STRUGGLE = ercf_oriens_struggle
+			}
+		}
+		trigger_event = ercf_oriens_struggle.0091
+		show_as_tooltip = { # Fake effects, custom-made to be readable (and also a summary of what happens across several events for OOP/UX reasons)
+			struggle:ercf_oriens_struggle = { end_struggle = yes }
+
+			ercf_oriens_struggle_roman_resurgence_effects = yes
+		}
+	}
+
+	# Kingdom+ only
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 0
+		duchy = 0
+		kingdom = 36
+		empire = 36
+		hegemony = 36
+	}
+	ai_potential = { always = yes }
+	ai_will_do = { base = 100 }
+}

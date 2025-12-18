@@ -1,0 +1,13 @@
+﻿autocrator_ercf_trait_add_xp_small_effect = {
+    add_trait_xp = {
+        trait = autocrator_ercf
+        value = 2
+    }
+}
+
+autocrator_ercf_trait_add_xp_medium_effect = {
+    add_trait_xp = {
+        trait = autocrator_ercf
+        value = 5
+    }
+}

@@ -1,0 +1,118 @@
+﻿ercf_oriens_struggle_roman_resurgence_effects = {
+	give_nickname = nick_the_pale_death_of_the_saracens
+	
+	hidden_effect = {
+		spawn_army = {
+			name = Bucellarii Cavalry, Veterans of the East
+			men_at_arms = {
+				type = bucellarii_guard
+				stacks = 10
+			}
+			men_at_arms = {
+				type = bucellarii_guard
+				stacks = 10
+			}
+			location = this.capital_province
+			uses_supply = yes
+			inheritable = yes
+		}
+		spawn_army = {
+			name = Scholae, Veterans of the East
+			men_at_arms = {
+				type = scholae
+				stacks = 5
+			}
+			men_at_arms = {
+				type = scholae
+				stacks = 5
+			}
+			location = this.capital_province
+			uses_supply = yes
+			inheritable = yes
+		}
+	}
+	add_prestige = 5000
+
+	# increase the religious conversion demand and offer vassalage acceptance for this character
+	dynasty = {
+		# add_dynasty_modifier = { modifier = restitutor_orientis_modifier }
+		add_dynasty_prestige = 10000
+	}
+
+	faith = {
+		change_fervor = {
+			value = 50
+			desc = fervor_gain_strengthen_caliphate
+		}
+		# Christian faiths gets a bonus for the rest of the game converting other counties
+		custom_tooltip = {
+			text = struggle_persia_ending_assertion_boost_sunni_county_conversion_tt
+			set_global_variable = {
+				name = ercf_oriens_struggle_ending_roman_resurgence_faith_bonus
+				value = flag:roman_resurgence_faith_bonus
+			}
+		}
+	}
+
+	struggle:ercf_oriens_struggle = {
+		title:e_byzantium.holder = {
+			title:k_syria = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					set_de_jure_liege_title = title:e_byzantium
+				}
+			}
+			title:k_jazira = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					set_de_jure_liege_title = title:e_byzantium
+				}
+			}
+			title:k_jerusalem = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					set_de_jure_liege_title = title:e_byzantium
+				}
+			}
+		}
+	}
+}
+
+ercf_oriens_struggle_end_effect = {
+	if = {
+		limit = {
+			exists = title:e_arabia.holder
+			title:e_arabia.holder = { has_character_modifier = fp3_struggle_caliph_super_suspicious_modifier }
+		}
+		title:e_arabia.holder = { remove_character_modifier = fp3_struggle_caliph_super_suspicious_modifier }
+	}
+
+	# Global variable tracking.
+	## For usage in councillor tasks.
+	set_global_variable = {
+		name = ercf_oriens_struggle_ending
+		value = $FLAG$
+	}
+	## For debug purposes.
+	if = {
+		limit = { gather_debug_variables_for_ercf_oriens_struggle_trigger = yes }
+		increment_global_variable_effect = {
+			VAL = current_year
+			VAR = ercf_oriens_struggle_end_date
+		}
+	}
+
+	every_player = {
+		limit = { fp3_does_this_player_care_about_the_persian_struggle = yes } # Needs to be checked before the struggle ends due to race condition issues
+		add_to_list = player_to_notify # Making a list so stuff is tiggered after the struggle ends, to make extra sure I don't break anything.
+	}
+
+	every_in_list = { # Then we *actually* notify palyers, making sure the struggle has already ended
+		list = player_to_notify
+		limit = {
+			this != root
+		}
+		trigger_event = $EVENT$
+	}
+	struggle:ercf_oriens_struggle ?= { end_struggle = $ENDING$ }
+}

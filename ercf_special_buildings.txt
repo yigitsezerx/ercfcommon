@@ -1,0 +1,277 @@
+﻿##########
+# The Odeon of Philippopolis
+##########
+
+the_odeon = {
+
+	asset = {
+		type = pdxmesh
+		name = "building_special_colosseum_mesh"
+	}
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_odeon.dds"
+	next_building = the_odeon_02
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = 2000
+
+	character_modifier = {
+		monthly_prestige_gain_mult = 0.05
+		monthly_dynasty_prestige_mult = 0.05
+	}
+	
+	province_modifier = {
+		build_speed = -0.05
+		development_growth = 0.1
+		build_gold_cost = -0.05
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}
+
+the_odeon_02 = {
+
+	asset = {
+		type = pdxmesh
+		name = "building_special_colosseum_mesh"
+	}
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_odeon_02.dds"
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+
+	can_construct = {
+		scope:holder.culture = {
+			has_innovation = innovation_manorialism
+			has_cultural_pillar = heritage_byzantine
+		}
+	}
+	
+	cost_gold = 2500
+
+	character_modifier = {
+		monthly_prestige_gain_mult = 0.1
+		monthly_dynasty_prestige_mult = 0.1
+		monthly_lifestyle_xp_gain_mult = 0.1
+		cultural_head_fascination_mult = 0.05
+	}
+	
+	province_modifier = {
+		build_speed = -0.1
+		development_growth = 0.15
+		development_growth_factor = 0.10
+		build_gold_cost = -0.1
+		monthly_income = 2
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}
+
+the_villa_armira = {
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_villa_armira_02.dds"
+	next_building = the_villa_armira_02
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = 2000
+
+	character_modifier = {
+		monthly_prestige_gain_mult = 0.03
+		monthly_dynasty_prestige_mult = 0.03
+		monthly_influence = 0.1
+	}
+
+	county_modifier = {
+		travel_danger = -20
+		stationed_maa_toughness_mult = normal_maa_toughness_tier_1
+		county_opinion_add = 10
+	}
+	
+	province_modifier = {
+		build_speed = -0.01
+		development_growth = 0.01
+		build_gold_cost = -0.01
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}
+
+the_villa_armira_02 = {
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_villa_armira_02.dds"
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = 2500
+
+	character_modifier = {
+		monthly_prestige_gain_mult = 0.04
+		monthly_dynasty_prestige_mult = 0.04
+		monthly_influence = 0.2
+	}
+
+	county_modifier = {
+		travel_danger = -20
+		stationed_maa_toughness_mult = normal_maa_toughness_tier_2
+		county_opinion_add = 20
+	}
+	
+	province_modifier = {
+		build_speed = -0.03
+		development_growth = 0.05
+		build_gold_cost = -0.03
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}
+
+# Hadrian's Gate
+
+the_hadriansgate = {
+
+	asset = {
+		#type = pdxmesh
+		#name = "building_special_colosseum_mesh"
+	}
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_hadriansgate.dds"
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = 2000
+
+	character_modifier = {
+		monthly_prestige_gain_mult = 0.02
+		monthly_dynasty_prestige_mult = 0.02
+		cultural_head_fascination_mult = 0.05
+	}
+	
+	province_modifier = {
+		development_growth = 0.1
+		build_gold_cost = -0.02
+		siege_phase_time = 0.15
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}
+
+# The Column of Arcadius
+
+the_arcadiuscolumn = {
+
+	asset = {
+		#type = pdxmesh
+		#name = "building_special_colosseum_mesh"
+	}
+
+	construction_time = very_slow_construction_time
+
+	type_icon = "ercf_arcadiuscolumn.dds"
+	
+	can_construct_potential = {
+		building_requirement_tribal = no
+	}
+	
+	cost_gold = 2000
+
+	character_modifier = {
+		monthly_dynasty_prestige_mult = 0.05
+		learning = 2
+		martial = 2
+		powerful_vassal_opinion = 10
+	}
+	
+	province_modifier = {
+		development_growth = 0.2
+		build_gold_cost = -0.02
+	}
+
+	county_modifier = {
+		county_opinion_add = 10
+		tax_mult = 0.1
+	}
+	
+	ai_value = {
+		base = 100
+		modifier = {
+			factor = 0
+			free_building_slots > 0
+		}
+	}
+	
+	type = special
+
+	flag = travel_point_of_interest_wonder
+}

@@ -1,0 +1,41 @@
+﻿regional_roman_cultures = {
+	
+	categories = {
+		historicity
+	}
+	
+	default = united_roman_culture
+
+	united_roman_culture = {
+	
+	}
+	
+	regional_cultures = {
+		
+	}
+}
+
+ere_wre_colours = {
+	categories = { tweaks }
+
+	default = ercf_default_colours
+
+	ercf_default_colours = {
+
+	}
+
+	only_ere_colour = {
+
+		
+	}
+
+	only_wre_colour = {
+
+
+	}
+
+	both_ere_wre_colours = {
+
+
+	}
+}

@@ -1,0 +1,395 @@
+﻿
+#############################################
+
+# Eastern Romans :)
+
+ # Feudal / Administrative
+baron_feudal_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 50
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+baron_feudal_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 50
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+barony_feudal_eastern_roman = {
+	type = title
+	tier = barony
+	priority = 50
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+count_feudal_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 60
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+count_feudal_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 60
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+county_feudal_eastern_roman = {
+	type = title
+	tier = county
+	priority = 60
+	governments = { feudal_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+duke_feudal_male_eastern_roman = {
+	type = character
+	gender= male
+	special = holder
+	tier = duchy
+	priority = 60
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+duke_feudal_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 60
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+duchy_feudal_eastern_roman = {
+	type = title
+	tier = duchy
+	priority = 60
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_feudal_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 80
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_feudal_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 80
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+kingdom_feudal_eastern_roman = {
+	type = title
+	tier = kingdom
+	priority = 80
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+emperor_feudal_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 300
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+emperor_feudal_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 300
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+empire_feudal_eastern_roman = {
+	type = title
+	tier = empire
+	priority = 300
+	governments = { feudal_government administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_feudal_male_independent_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 100
+	governments = { feudal_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_feudal_female_independent_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 100
+	governments = { feudal_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+kingdom_feudal_independent_eastern_roman = {
+	type = title
+	tier = kingdom
+	priority = 100
+	governments = { feudal_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_administrative_male_independent_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 120
+	governments = { administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+king_administrative_female_independent_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 120
+	governments = { administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+kingdom_administrative_independent_eastern_roman = {
+	type = title
+	tier = kingdom
+	priority = 120
+	governments = { administrative_government }
+	heritages = { heritage_byzantine }
+	name_lists = { name_list_eastern_roman }
+	flavourization_rules = { 
+		top_liege = yes
+	}
+}
+exarch_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_exarchate_ravenna k_african_exarchate }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+exarch_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_exarchate_ravenna k_african_exarchate }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+exarchate_eastern_roman = {
+	type = title
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_exarchate_ravenna k_african_exarchate }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+domesticus_male_eastern_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_anatolia }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+domesticus_female_eastern_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_anatolia }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+domesticate_eastern_roman = {
+	type = title
+	tier = kingdom
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { k_anatolia }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+
+caesar_male_western_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { e_italy }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+
+caesar_female_western_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { e_italy }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+
+dominus_noster_male_roman = {
+	type = character
+	gender = male
+	special = holder
+	tier = hegemony
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { h_roman_empire h_eastern_roman_empire }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}
+
+dominus_noster_female_roman = {
+	type = character
+	gender = female
+	special = holder
+	tier = hegemony
+	priority = 500
+	heritages = { heritage_byzantine }
+	titles = { h_roman_empire h_eastern_roman_empire }
+	governments = { administrative_government feudal_government }
+	flavourization_rules = { 
+		top_liege = no
+	}
+}

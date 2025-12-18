@@ -1,0 +1,27 @@
+﻿GetRegionalArcherMAA = {
+	type = character
+	
+	text = {
+		trigger = { culture = { has_innovation = innovation_cretans } } #Cretan Crossbowmen
+		localization_key = cretan_crossbowmen
+	}
+	text = {
+		trigger = { always = no }
+		fallback = yes
+		localization_key = bowmen
+	}
+}
+
+GetRegionalInfantryMAA = {
+	type = character
+	random_valid = yes
+	
+	text = {
+		trigger = { culture = { has_cultural_parameter = unlock_maa_scholae } } # Scholae Palatinae
+		localization_key = scholae
+	}
+	text = {
+		trigger = { culture = { has_cultural_parameter = unlock_maa_hicanati } } # Hicanati
+		localization_key = hicanati
+	}
+}

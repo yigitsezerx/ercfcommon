@@ -1,0 +1,62 @@
+﻿# Actuarius
+
+actuarius_distribute_wage_provisions = {
+	court_position_types = { actuarius_court_position }
+
+	# Monthly cost for the task
+	cost = {
+		round = no
+		gold = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	employee_modifier = {
+		stress_gain_mult = 0.25
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			supply_limit_mult = 0.02
+			movement_speed = 0.01
+			men_at_arms_maintenance = -0.02
+		}
+		poor = {
+			supply_limit_mult = 0.04
+			movement_speed = 0.03
+			men_at_arms_maintenance = -0.04
+		}
+		average = {
+			supply_limit_mult = 0.6
+			movement_speed = 0.05
+			men_at_arms_maintenance = -0.08
+		}
+		good = {
+			supply_limit_mult = 0.8
+			movement_speed = 0.08
+			men_at_arms_maintenance = -0.1
+		}
+		excellent = {
+			supply_limit_mult = 0.1
+			movement_speed = 0.1
+			men_at_arms_maintenance = -0.2
+		}
+	}
+
+	ai_will_do = {
+		value = 50
+		if = {
+			limit = {
+				any_held_county = {
+					count >= 2
+					county_control <= 90
+				}
+			}
+			add = 50
+		}
+	}
+}

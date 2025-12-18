@@ -1,0 +1,102 @@
+﻿#CUROPALATES by kitsune (kaiser)
+
+curopalates_improve_domain = {
+	court_position_types = { curopalates_court_position }
+
+	# Monthly cost for the task
+	cost = {
+		round = no
+		gold = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			monthly_county_control_growth_add = 0.05
+		}
+		poor = {
+			monthly_county_control_growth_add = 0.10
+		}
+		average = {
+			monthly_county_control_growth_add = 0.15
+		}
+		good = {
+			monthly_county_control_growth_add = 0.20
+		}
+		excellent = {
+			monthly_county_control_growth_add = 0.3
+		}
+	}
+
+	ai_will_do = {
+		value = 50
+		if = {
+			limit = {
+				any_held_county = {
+					count >= 2
+					county_control <= 90
+				}
+			}
+			add = 50
+		}
+	}
+}
+
+curopalates_advance_research = {
+	court_position_types = { curopalates_court_position }
+
+	# Monthly cost for the task
+	cost = {
+		round = no
+		gold = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	employee_modifier = {
+		monthly_lifestyle_xp_gain_mult = 0.50
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+		 	monthly_lifestyle_xp_gain_mult = 0.04
+		}
+		poor = {
+		 	monthly_lifestyle_xp_gain_mult = 0.08
+		}
+		average = {
+		 	monthly_lifestyle_xp_gain_mult = 0.10
+		}
+		good = {
+		 	monthly_lifestyle_xp_gain_mult = 0.15
+		}
+		excellent = {
+		 	monthly_lifestyle_xp_gain_mult = 0.25
+		}
+	}
+
+	is_shown = {  }
+	is_valid_showing_failures_only = { }
+
+	on_start = { }
+	on_end = { }
+
+	ai_will_do = {
+		value = 30
+		if = {
+			limit = {
+				monthly_character_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+	}
+}

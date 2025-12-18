@@ -1,0 +1,45 @@
+﻿KnightCulture = {
+	type = character
+	
+	text = {
+		trigger = {
+			culture = { has_cultural_pillar = language_latin }
+		}
+		localization_key = knight_excubitor
+	}
+}
+
+KnightCulturePlural = {
+	parent = KnightCulture
+	suffix = "_plural"
+}
+
+KnightCultureNoTooltip = {
+	parent = KnightCulture
+	suffix = "_no_tooltip"
+}
+
+KnightCulturePluralNoTooltip = {
+	parent = KnightCulture
+	suffix = "_no_tooltip_plural"
+}
+
+KnightCultureNoTooltipLowercase = {
+	parent = KnightCulture
+	suffix = "_no_tooltip_lowercase"
+}
+
+KnightCulturePluralNoTooltipLowercase = {
+	parent = KnightCulture
+	suffix = "_no_tooltip_lowercase_plural"
+}
+
+KnightCulturePluralPossessiveNoTooltipLowercase = {
+	parent = KnightCulture
+	suffix = "_no_tooltip_lowercase_plural_possessive"
+}
+
+KnightCultureAdjectiveNoTooltipLowercase = {
+	parent = KnightCulture
+	suffix = "_no_tooltip_lowercase_adjective"
+}

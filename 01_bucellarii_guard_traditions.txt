@@ -1,0 +1,86 @@
+﻿tradition_bucellarii_guard = {
+	category = regional
+
+	layers = {
+		0 = martial
+		1 = mediterranean
+		3 = 6.dds
+		4 = imperial_expedition.dds
+	}
+
+	is_shown = {
+		OR = {
+			this = culture:eastern_roman
+			any_parent_culture_or_above = {
+				this = culture:eastern_roman
+			}
+			has_cultural_pillar = heritage_byzantine
+		}
+		# DLC check.
+		has_ep3_dlc_trigger = yes
+		NOT = {
+			has_cultural_tradition = tradition_roman_legacy
+		}
+	}
+	can_pick = {
+	}
+	
+	parameters = {
+		strength_in_numbers_maa_limit_bonus = yes
+		unlock_bucellarii_guard = yes
+		unlock_hicanati = yes
+	}
+	character_modifier = {
+		heavy_cavalry_max_size_add = 1
+		men_at_arms_title_limit = 1
+		pikemen_max_size_add = 1
+	}
+	
+	cost = {
+		prestige = 6000
+	}
+}
+
+tradition_regimental_scholae = {
+	category = regional
+
+	layers = {
+		0 = martial
+		1 = mediterranean
+		4 = regimental_scholae.dds
+	}
+
+	is_shown = {
+		OR = {
+			this = culture:eastern_roman
+			any_parent_culture_or_above = {
+				this = culture:eastern_roman
+			}
+			has_cultural_pillar = heritage_byzantine
+		}
+		# DLC check.
+		has_ep3_dlc_trigger = yes
+		NOT = {
+			has_cultural_tradition = tradition_roman_legacy
+		}
+	}
+	can_pick = {
+	}
+	
+	parameters = {
+		unlock_scholae = yes		
+		regimental_scholae_maa_size = yes
+	}
+	character_modifier = {
+		heavy_infantry_max_size_add = 1
+		men_at_arms_cap = 1
+		men_at_arms_limit = 2
+		maa_toughness_mult = 0.2
+		army_maintenance_mult = 0.02
+		men_at_arms_recruitment_cost = 0.02
+	}
+	
+	cost = {
+		prestige = 5000
+	}
+}

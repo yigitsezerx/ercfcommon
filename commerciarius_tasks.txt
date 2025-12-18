@@ -1,0 +1,62 @@
+﻿# Commerciarius, (The official charged with the Commercium, or trade duties)
+
+commerciarius_control_commerce = {
+	court_position_types = { commerciarius_court_position }
+
+	# Monthly cost for the task
+	cost = {
+		round = no
+		gold = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	employee_modifier = {
+		stress_gain_mult = 0.25
+		general_opinion = -10
+		monthly_intrigue_lifestyle_xp_gain_mult = 0.1
+		monthly_stewardship_lifestyle_xp_gain_mult = 0.2
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			men_at_arms_maintenance = -0.02
+			character_capital_county_monthly_control_add = -0.45
+		}
+		poor = {
+			men_at_arms_maintenance = -0.04
+			character_capital_county_monthly_control_add = -0.40
+		}
+		average = {
+			men_at_arms_maintenance = -0.08
+			character_capital_county_monthly_control_add = -0.35
+		}
+		good = {
+			men_at_arms_maintenance = -0.1
+			domain_limit = 1
+			character_capital_county_monthly_control_add = -0.30
+		}
+		excellent = {
+			men_at_arms_maintenance = -0.2
+			domain_limit = 2
+			character_capital_county_monthly_control_add = -0.30
+		}
+	}
+
+	ai_will_do = {
+		value = 50
+		if = {
+			limit = {
+				any_held_county = {
+					count >= 2
+					county_control <= 90
+				}
+			}
+			add = 50
+		}
+	}
+}

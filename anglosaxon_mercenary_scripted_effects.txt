@@ -1,0 +1,23 @@
+﻿spawn_anglosaxon_company_effect = {
+	if = {
+		limit = {
+			NOT = { has_character_flag = hired_anglo_saxon_company }
+		}
+		custom_tooltip = anglosaxonmercenariesspawned
+	}
+
+	spawn_army = {
+		name = anglo_saxon_company
+		levies = 1200
+		men_at_arms = {
+			type = huscarl
+			stacks = 8
+		}
+		men_at_arms = {
+			type = bowmen
+			stacks = 4
+		}
+		location = root.capital_province
+		inheritable = no		
+	}
+}

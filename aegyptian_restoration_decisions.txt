@@ -1,0 +1,180 @@
+﻿aegyptian_restoration_decision = {
+	title = aegyptian_restoration.t
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_alexandrian_canopic.dds"
+	}
+	desc = aegyptian_restoration.desc
+	decision_group_type = roman
+
+	selection_tooltip = aegyptian_restoration.tip
+	sort_order = 50
+
+	is_shown = {
+		# DLC check
+		has_ep3_dlc_trigger = yes
+		# Standard checks
+		is_playable_character = yes
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_aegyptus_restored
+			}
+		}
+
+		OR = {
+			completely_controls_region = custom_roman_syria_palestina
+			OR = {
+				completely_controls = title:d_cyrenaica
+				completely_controls = title:d_alexandria
+				completely_controls = title:d_cairo
+				completely_controls = title:d_delta
+			}
+		}
+	}
+
+	is_valid = {
+		completely_controls = title:k_egypt
+	}
+	
+	is_valid_showing_failures_only = {
+		is_landed = yes
+	}
+
+	effect = {
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:flag_aegyptus_restored
+		}
+
+		dynasty = { add_dynasty_prestige = 2000 }
+
+		change_influence = {
+		value = massive_influence_gain
+		multiply = 8
+		}
+
+		every_vassal = {
+		custom = custom.every_admin_vassal
+		limit = { government_allows = administrative }
+		add_opinion = {
+			target = scope:root_scope
+			modifier = admiration_opinion
+			opinion = 30
+		}
+	}	
+
+		custom_tooltip = aegyptian_restoration_decision.a
+
+		create_title_and_vassal_change = {
+			type = created
+			save_scope_as = title_change
+			add_claim_on_loss = yes
+		}
+		title:k_aegyptus = {
+			change_title_holder = {
+				holder = root
+				change = scope:title_change
+			}
+		}
+		resolve_title_and_vassal_change = scope:title_change
+		title:d_cyrenaica = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_alexandria = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_delta = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_cairo = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_al-wahat = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_al-said = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_eastern_desert = { set_de_jure_liege_title = title:k_aegyptus }
+		title:d_sinai = { set_de_jure_liege_title = title:k_aegyptus }
+
+		hidden_effect = {
+			title:k_aegyptus = { set_de_jure_liege_title = title:e_byzantium } # its only logical
+			trigger_event = ercf_aegyptus.1000
+			destroy_title = title:k_egypt
+		}
+		custom_tooltip = = {
+			text = romanization_tt
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_game_rule = regional_cultures
+				}
+				title:k_aegyptus = {
+					every_de_jure_county = {
+						random = {
+							change = 5
+							modifier = {
+								add = 10
+								development_level >=2
+							}
+							modifier = {
+								add = 10
+								development_level >=3
+							}
+							modifier = {
+								add = 10
+								development_level >=4
+							}
+							set_county_culture = culture:levantine_roman							
+						}
+					}
+				}
+			}
+			else = {
+				title:k_aegyptus = {
+					every_de_jure_county = {
+						random = {
+							change = 5
+							modifier = {
+								add = 10
+								development_level >=2
+							}
+							modifier = {
+								add = 10
+								development_level >=3
+							}
+							modifier = {
+								add = 10
+								development_level >=4
+							}
+							set_county_culture = culture:eastern_roman							
+						}
+					}
+				}				
+			}
+		}
+	}
+
+	cost = {
+		gold = {
+			value = major_gold_value
+			multiply = 1.5
+			round = yes
+		}
+		prestige = {
+			value = major_prestige_gain
+			multiply = 2
+			round = yes
+		}
+	}
+
+	ai_check_interval = 1000
+
+	ai_potential = {
+		is_ruler = yes
+		short_term_gold >= {
+			value = major_gold_value
+			multiply = 1.5
+			round = yes
+		}
+		prestige >= {
+			value = major_prestige_gain
+			multiply = 3
+			round = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

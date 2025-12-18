@@ -1,0 +1,51 @@
+﻿#magister_militum_per_diocesem
+
+magister_militum_command_armies = {
+	court_position_types = {
+		mm_per_thracias_court_position
+		magister_orientem_court_position
+	}
+
+	# Monthly cost for the task
+	cost = {
+		round = no
+		gold = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			
+		}
+		poor = {
+			led_by_owner_extra_advantage_add = 1
+		}
+		average = {
+			led_by_owner_extra_advantage_add = 2
+		}
+		good = {
+			led_by_owner_extra_advantage_add = 3
+		}
+		excellent = {
+			led_by_owner_extra_advantage_add = 4
+		}
+	}
+
+	ai_will_do = {
+		value = 50
+		if = {
+			limit = {
+				any_held_county = {
+					count >= 2
+					county_control <= 90
+				}
+			}
+			add = 50
+		}
+	}
+}

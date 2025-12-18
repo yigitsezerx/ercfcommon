@@ -1,0 +1,7 @@
+﻿default = {
+	graphical_cultures = { western_unit_gfx iberian_christian_unit_gfx }
+}
+
+eastern_roman = {
+	graphical_cultures = { eastern_roman_knight_gfx }
+}

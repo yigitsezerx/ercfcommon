@@ -1,0 +1,123 @@
+﻿# Standard Values
+@pos_compat_high = 30
+@pos_compat_medium = 15
+@pos_compat_low = 5
+
+@neg_compat_high = -30
+@neg_compat_medium = -15
+@neg_compat_low = -5
+
+flavius_ercf = {
+	category = fame
+	
+	monthly_prestige = 0.1
+	same_culture_opinion = 10
+	dread_baseline_add = 10
+	domain_tax_mult = 0.10
+	domicile_monthly_prestige_add = 0.10
+	domicile_monthly_influence_add = 0.10
+	flag = initial_legitimacy_boost
+	
+	shown_in_ruler_designer = no
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_flavius_ercf_desc
+			}
+			desc = trait_flavius_ercf_character_desc
+		}
+	}
+}
+
+autocrator_ercf = {
+	icon = autocrator_ercf.dds
+
+	category = fame
+
+	stress_gain_mult = 0.05
+	monthly_county_control_growth_add = 0.2
+	dread_baseline_add = 20
+
+	shown_in_ruler_designer = no
+
+	track = {
+		50 = {
+			monthly_legitimacy_add = 5
+			monthly_prestige = 0.20
+			monthly_lifestyle_xp_gain_mult = 0.05
+			vassal_opinion = 10
+		}
+		100 = {
+			monthly_legitimacy_add = 5
+			monthly_lifestyle_xp_gain_mult = 0.05
+			monthly_prestige = 0.20
+			vassal_opinion = 10
+		}
+	}
+
+	# Loc
+	name = {
+		first_valid = {
+			#Autocrator and Basileus
+			triggered_desc = {
+				trigger = {
+					exists = this
+					has_trait_xp = {
+						trait = autocrator_ercf
+						value >= 100
+					}
+				}
+				desc = trait_autocrator_ercf_3
+			}
+			#Aspiring Autocrat
+			triggered_desc = {
+				trigger = { 
+					exists = this
+					has_trait_xp = {
+						trait = autocrator_ercf
+						value >= 50
+					}
+				}
+				desc = trait_autocrator_ercf_2
+			}
+			#Autocrat
+			desc = trait_autocrator_ercf
+		}
+	}
+
+	# Loc
+	desc = {
+		first_valid = {
+			#The trait can never go higher than the first level if it's not assigned to a character
+			triggered_desc = {
+				trigger = { 
+					NOT = { exists = this } 
+				}
+				desc = trait_autocrator_ercf_desc
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait_xp = {
+						trait = autocrator_ercf
+						value >= 100
+					}
+				}
+				desc = trait_autocrator_ercf_3_character_desc
+			}
+			triggered_desc = {
+				trigger = { 
+					has_trait_xp = {
+						trait = autocrator_ercf
+						value >= 50
+					}
+				}
+				desc = trait_autocrator_ercf_2_character_desc
+			}
+			desc = trait_autocrator_ercf_character_desc
+		}
+	}
+}

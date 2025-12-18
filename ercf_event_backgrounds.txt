@@ -1,0 +1,269 @@
+﻿### EVENT BACKGROUNDS LIST:
+# alley_night 				[event:/SFX/Events/Backgrounds/city_alley_night]
+# alley_day 				[event:/SFX/Events/Backgrounds/city_alley_day_western]
+# armory 					[event:/SFX/Events/Backgrounds/armory]
+# battlefield 				[event:/SFX/Events/Backgrounds/battlefield_gloomy]
+# temple 			
+# temple_scope 		
+# temple_church 			[event:/SFX/Events/Backgrounds/temple_christian]
+# temple_mosque 			[event:/SFX/Events/Backgrounds/temple_muslim]
+# temple_generic 			[event:/SFX/Events/Backgrounds/temple_generic]
+# corridor_night 			[event:/SFX/Events/Backgrounds/castle_corridor_night]
+# corridor_day 				[event:/SFX/Events/Backgrounds/castle_corridor_day]
+# council_chamber			[event:/SFX/Events/Backgrounds/meetingchamber_western]
+# courtyard					[event:/SFX/Events/Backgrounds/castle_courtyard_western]
+# dungeon					[event:/SFX/Events/Backgrounds/dungeon]
+# wilderness		
+# wilderness_scope
+# wilderness_desert 		[event:/SFX/Events/Backgrounds/desert_day]
+# wilderness_forest 		[event:/SFX/Events/Backgrounds/deciduous_forest_day]
+# wilderness_forest_pine 	[event:/SFX/Events/Backgrounds/coniferous_forest_day]
+# wilderness_mountains 		[event:/SFX/Events/Backgrounds/mountains_day]
+# wilderness_steppe 		[event:/SFX/Events/Backgrounds/steppe_day]
+# wilderness_wetlands
+# wilderness_jungle
+# plains
+# hills
+# drylands
+# ocean
+# terrain
+# terrain_scope
+# terrain_activity
+# docks 					[event:/SFX/Events/Backgrounds/docks_day]
+# farmland 					[event:/SFX/Events/Backgrounds/fields_farms_day]
+# feast 					[event:/SFX/Events/Backgrounds/feasthall]
+# gallows 					[event:/SFX/Events/Backgrounds/gallows_execution_platform]
+# garden 					[event:/SFX/Events/Backgrounds/desert_day]
+# market
+# market_east 				[event:/SFX/Events/Backgrounds/town_market_middleeastern_day]
+# market_tribal 			[event:/SFX/Events/Backgrounds/townmarket_day_tribal_pagan]
+# market_west 				[event:/SFX/Events/Backgrounds/townmarket_western_day]
+# burning_building 			[event:/SFX/Events/Backgrounds/burning_building]
+# sitting_room 				[event:/SFX/Events/Backgrounds/sittingroom_fireplace]
+# study 					[event:/SFX/Events/Backgrounds/office_workplace]
+# physicians_study 			[event:/SFX/Events/Backgrounds/physicians_office_western]
+# tavern 					[event:/SFX/Events/Backgrounds/corner_of_tavern]
+# throne_room
+# throne_room_scope
+# throne_room_east 			[event:/SFX/Events/Backgrounds/throneroom_middleeastern_african]
+# throne_room_india			[event:/SFX/Events/Backgrounds/throneroom_middleeastern_african]
+# throne_room_mediterranean	[event:/SFX/Events/Backgrounds/throneroom_mediterranean]
+# throne_room_tribal		[event:/SFX/Events/Backgrounds/throneroom_tribal_pagan]
+# throne_room_west			[event:/SFX/Events/Backgrounds/throneroom_western]
+# army_camp					[event:/SFX/Events/Backgrounds/camp_generic_day]
+
+### FP1 ### 
+
+# FP1 Beached longships 	[event:/DLC/FP1/SFX/Events/event_beached_longships]
+# FP1 Ocean longships 		[event:/DLC/FP1/SFX/Events/event_ocean_longship]
+# FP1 Prison 				[event:/DLC/FP1/SFX/Events/event_prison]
+# FP1 Runestone				[event:/DLC/FP1/SFX/Events/event_runestone]
+# FP1 Steward Study	 		[event:/DLC/FP1/SFX/Events/event_steward_study]
+# FP1 Viking Temple 		[event:/DLC/FP1/SFX/Events/event_temple]
+# FP1 Throneroom Nontribal 	[event:/DLC/FP1/SFX/Events/event_throneroom_nontribal]
+# FP1 Throneroom			[event:/DLC/FP1/SFX/Events/event_throneroom]
+# FP1 Ting Stone Circle 	[event:/DLC/FP1/SFX/Events/event_ting_stone_circle]
+# FP1 Tribal Corridor 		[event:/DLC/FP1/SFX/Events/event_tribal_corridor]
+# FP1 Viking Feast 			[event:/DLC/FP1/SFX/Events/event_viking_feast]
+
+### FP2 ##
+
+# FP2 corridor_day			[event:/DLC/FP2/SFX/Events/corridor_day]
+# FP2 corridor_night		[event:/DLC/FP2/SFX/Events/corridor_night]
+# FP2 courtyard				[event:/DLC/FP2/SFX/Events/courtyard]
+# FP2 garden				[event:/DLC/FP2/SFX/Events/garden]
+# FP2 prison				[event:/DLC/FP2/SFX/Events/prison]
+# FP2 relaxing_room			[event:/DLC/FP2/SFX/Events/relaxing_room]
+# FP2 temple				[event:/DLC/FP2/SFX/Events/temple]
+# FP2 throneroom			[event:/DLC/FP2/SFX/Events/throneroom]
+
+### Iberian Struggle ###
+
+# fp2_fullscreen_intro 
+# fp2_fullscreen_hostility
+# fp2_fullscreen_compromise 
+# fp2_fullscreen_conciliation 
+
+### FP3 ###
+# FP3 courtyard_night		[event:/SFX/Events/Backgrounds/castle_corridor_night]
+# FP3 docks					[event:/SFX/Events/Backgrounds/docks_day]
+# FP3 temple				[event:/SFX/Events/Backgrounds/temple_generic]
+# FP3 throneroom			[event:/SFX/Events/Backgrounds/throneroom_middleeastern_african]
+# FP3 bathhouse				[event:/SFX/Events/Backgrounds/dungeon]
+# FP3 cave					[event:/SFX/Events/Backgrounds/dungeon]
+
+### BP1 ###
+
+# bp1_indian_corridor_night
+# bp1_relaxing_room_western
+# bp1_indian_corridor_day
+# bp1_relaxing_room_mena
+# bp1_courtyard_indian
+# bp1_courtyard_mena
+# bp1_kitchen_western
+# bp1_bonfire
+# bp1_wine_cellar
+# bp1_crossroads_inn
+# bp1_docks_tribal
+
+### EP2 ###
+
+# tour_arrival_turned_away
+# tour_arrival
+# tournament_contest 		[event:/SFX/Events/Backgrounds/camp_generic_day]
+# tournament_pas_darmes		[event:/SFX/Events/Backgrounds/townmarket_day_tribal_pagan]
+# holy_site_generic
+# holy_site_unique
+# ep2_holy_site_mena
+# ep2_holy_site_indian
+# ep2_travel_settlement_farm
+# ep2_travel_settlement_desert
+# ep2_travel_nomad_settlement_desert
+# ep2_travel_settlement_desert
+# ep2_travel_settlement_hills
+# ep2_travel_settlement_mountains
+# ep2_travel_settlement_steppe
+# ep2_travel_bridge
+# ep2_hunt_forest_hut
+# ep2_hunt_forest_cave
+# ep2_hunt_falconry_mews
+# ep2_hunt_foggy_forest
+# ep2_wedding_ceremony
+
+### BP2 ###
+
+# bp2_courtyard
+# bp2_indian_garden_main
+# bp2_nursery 
+# bp2_tavern_mena
+# bp2_university
+
+
+### CE1 ###
+# ce1_catacombs
+# ce1_condemned_village
+# ce1_funeral_pyre
+# ce1_legendary_oasis
+# ce1_legendary_spring
+# ce1_legendary_battlefield
+# ce1_physician_tribal
+# ce1_study_physician_indian
+# ce1_study_physician_mena
+
+# FULLSCREEN CE1
+# ce1_fullscreen_legitimizing_legend
+# ce1_fullscreen_heroic_legend
+# ce1_fullscreen_black_death
+
+### EP3 ###
+# ep3_holy_site_orthodox
+# ep3_constantinople
+# ep3_constantinople_riot
+# ep3_hippodrome
+# ep3_triumph
+# ep3_hippodrome_track
+# ep3_hagia_sophia
+# ep3_byzantine_feast
+# ep3_city_gate
+# ep3_mediterranean_estate
+# ep3_relaxing_room
+# ep3_relaxing_tent
+# ep3_medi_market
+# ep3_medi_study
+# ep3_byzantium_throneroom
+# ep3_siege_warfare
+# pivotal_chariots_win_blue
+# pivotal_chariots_win_green
+# pivotal_chariots_win_red
+# pivotal_chariots_win_white
+# pivotal_chariots_fail_blue
+# pivotal_chariots_fail_green
+# pivotal_chariots_fail_red
+# pivotal_chariots_fail_white
+
+### MPO ###
+# mpo_city_steppe
+# mpo_camp_steppe
+# mpo_tent_interior_mongol
+# mpo_campfire_steppe
+# mpo_steppe_evening
+# mpo_rural_village_asian
+# mpo_raid_burning_asian
+# mpo_hunt_steppe
+# mpo_temple_steppe
+# mpo_nomadic_throneroom
+
+
+### ERCF ###
+#### ERCF Fullscreen Backgrounds ####
+ercf_fullscreen_emperor_brings_word_to_taurus = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_emperor_brings_word_to_taurus.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_exarchate_ravenna = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_exarchate_ravenna.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_arch_of_carthage = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_arch_of_carthage.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_alexandrian_canopic = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_alexandrian_canopic.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_suburbicaria = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_suburbicaria.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_wre = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_wre.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_struggle_oriens_ending_roman_resurgence = {
+	background = {
+		reference = "gfx/interface/illustrations/struggle_backgrounds/struggle_ercf_phase_contestation_bg.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_oriens_struggle_canopic = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_oriens_struggle_canopic.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
+
+ercf_fullscreen_oriens_struggle_roman_resurgence = {
+	background = {
+		reference = "gfx/interface/illustrations/event_story/ercf_fullscreen_oriens_struggle_roman_resurgence.dds"
+		environment = "environment_event_study_physician" # added because it is expected in events
+		ambience = "event:/DLC/EP3/SFX/Stingers/Byzantine_Flavor/ep3_mx_sting_byzantineflavor_become_emperor" 
+	}
+}
